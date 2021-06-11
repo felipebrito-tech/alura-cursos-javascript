@@ -1,15 +1,24 @@
 <meta charset="UTF-8" />
 
 <script>
-    document.write("O José nasceu em ");
-    document.write(2021-20);
+    var anoCorrente = 2021;
+    var idadeFlavio = anoCorrente - 1977;
+    var idadeJoaquim = anoCorrente - 1995;
+    var idadeBarney = anoCorrente - 1976;
+
+    var nome = "Flávio";
+    document.write("A idade de " + nome + " é: " + idadeFlavio);
     document.write("<br />");
 
-    document.write("A Maria nasceu em ");
-    document.write(2021-31);
+    var nome = "Joaquim";
+    document.write("A idade de " + nome + " é: " + idadeJoaquim);
     document.write("<br />");
 
-    document.write("O Luiz nasceu em ");
-    document.write(2021-47);
+    var nome = "Barney";
+    document.write("A idade de " + nome + " é: " + idadeBarney);
     document.write("<br />");
+    document.write("<br />");
+
+    var mediaIdades = (idadeFlavio + idadeJoaquim + idadeBarney)/3;
+    document.write("A média das idades é: " + Math.round(mediaIdades));
 </script>
