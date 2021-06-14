@@ -16,11 +16,9 @@
         return peso / (altura * altura);
     }
 
-    var imcJosé = calculaIMC(88, 1.84);
-    var imcMaria = calculaIMC(96, 1.65);
-    var totalIMC = imcJosé + imcMaria;
+    var nome = prompt("Por favor, informe seu nome:");
+    var alturaInformada = prompt("Olá " + nome + "! Agora informe sua altura:");
+    var pesoInformado = prompt("Agora " + nome + ", informe seu peso:");
 
-    mostra("O IMC de José é " + imcJosé);
-    mostra("O IMC de Maria é " + imcMaria);
-    mostra("A soma dos IMCs é " + totalIMC);
+    mostra(nome + ", seu IMC é: " + calculaIMC(pesoInformado, alturaInformada));
 </script>
