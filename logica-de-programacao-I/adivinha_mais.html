@@ -5,27 +5,65 @@
 
 <script>
     function geraNovoSegredo(){
-        return Math.round(Math.random() * 10);
+        var novoSegredo = 0;
+
+        while(novoSegredo == 0){
+            novoSegredo = Math.round(Math.random() * 10);
+        }
+
+        return novoSegredo;
     }
 
-    var segredo = geraNovoSegredo();
+    function geraSegredos(qtdSegredos){
+        var segredosGerados = [];
 
-    var input = document.querySelector("input");
-    input.focus();
+        var i = 0;
+        while(i < qtdSegredos){
+            var novoSegredo = geraNovoSegredo();
+
+            if (!segredosGerados.includes(novoSegredo)){
+                segredosGerados.push(novoSegredo);
+                i++;
+            }
+        }
+
+        return segredosGerados;
+    }
 
     function verifica(){
-        if (input.value == segredo){
-            alert("Você acertou!");
+        var achou = false;
+        for(var i = 0; i < segredos.length; i++){
+            if (input.value == segredos[i]){
+                alert("Você acertou!");
+                achou = true;
+    
+                segredos = iniciaSegredos();
+                break;
+            }
+        }
 
-            segredo = geraNovoSegredo();
-        }
-        else{
+        if (!achou)
             alert("Você errou!");
-        }
 
         input.value = "";
         input.focus();
     }
+
+    function iniciaSegredos(){
+        var qtdSegredos = 0;
+        while(qtdSegredos < 1 || qtdSegredos > 5){
+            qtdSegredos = parseInt(prompt("Quantos segredos você deseja gerar (de 1 a 5)?"));
+            
+            if(isNaN(qtdSegredos)) qtdSegredos = 0;
+        }
+        return geraSegredos(qtdSegredos);
+    }
+
+    var segredos = iniciaSegredos();
+
+    var input = document.querySelector("input");
+    input.focus();
+
 
     var button = document.querySelector("button");
     button.onclick = verifica;
