@@ -5,3 +5,4 @@ Projeto agregador dos projetos que serão implementados nos cursos de Javascript
 # Lista de Projetos:
 
 1 - Lógica de Programação I
+2 - Lógica de Programação II
