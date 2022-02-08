@@ -1,0 +1,58 @@
+<span style="display: block;margin-bottom: 10px;">
+  Número de acertos: <input type="text" disabled value="0" />
+</span>
+<div style="border: 1px solid black; float: left;">
+  <canvas width="600" height="400"></canvas>
+</div>
+
+<script>
+  var tela = document.querySelector('canvas');
+  var pincel = tela.getContext('2d');
+
+  pincel.fillStyle = 'white';
+  pincel.fillRect(0, 0, 600, 400);
+
+  var x;
+  var y;
+  var raio = 10;
+  var acertos = 0;
+
+  function desenhaCirculo(raio, cor) {
+    pincel.fillStyle = cor;
+    pincel.beginPath();
+    pincel.arc(x, y, raio, 0, 2 * Math.PI);
+    pincel.fill();
+  }
+
+  function limpaTela(){
+    pincel.clearRect(0, 0, 600, 400);
+  }
+
+  function desenhaAlvo() {
+    x = sorteiaPosicao(600);
+    y = sorteiaPosicao(400);
+
+    limpaTela();
+    desenhaCirculo(raio + 20, 'red');
+    desenhaCirculo(raio + 10, 'white');
+    desenhaCirculo(raio, 'red');
+  }
+
+  function sorteiaPosicao(maximo) {
+    return Math.floor(Math.round(Math.random() * maximo));
+  }
+
+  function dispara(evento) {
+    var xAleatorio = evento.pageX - tela.offsetLeft;
+    var yAleatorio = evento.pageY - tela.offsetTop;
+
+    if ((xAleatorio >= x - raio) && (xAleatorio <= x + raio) && (yAleatorio >= y - raio) && (yAleatorio <= y + raio)) {
+      acertos += 1;
+      document.querySelector('input').value = acertos;
+    }
+  }
+
+  tela.onclick = dispara;
+
+  setInterval(desenhaAlvo, 1500);
+</script>
