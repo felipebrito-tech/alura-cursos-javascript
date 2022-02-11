@@ -6,3 +6,4 @@ Projeto agregador dos projetos que serão implementados nos cursos de Javascript
 
 1 - Lógica de Programação I
 2 - Lógica de Programação II
+3 - Jogos clássicos parte 1: Iniciando no Javascript com Pong

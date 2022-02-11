@@ -1,0 +1,43 @@
+import { pincel } from './pincel.js';
+
+export class Bolinha {
+    constructor(x, y, raio, velocidadeX, velocidadeY) {
+        this.x = x;
+        this.y = y;
+        this.raio = raio;
+        this.velocidadeX = velocidadeX;
+        this.velocidadeY = velocidadeY;
+        this.cor = 'white';
+    }
+
+    desenha() {
+        pincel.fillStyle = this.cor;
+        pincel.beginPath();
+        pincel.arc(this.x, this.y, this.raio, 0, 2 * 3.14);
+        pincel.fill();
+    }
+
+    move(mesa, raqueteJogador) {
+        this.x += this.velocidadeX;
+        this.y += this.velocidadeY;
+
+        this.verificaColisaoBorda(mesa);
+        this.verificaColisaoRaqueteJogador(raqueteJogador)
+    }
+
+    verificaColisaoBorda(mesa) {
+        if (this.x + this.raio > mesa.largura
+            || this.x - this.raio < 0) this.velocidadeX *= -1;
+    
+        if (this.y + this.raio > mesa.altura
+                || this.y - this.raio < 0) this.velocidadeY *= -1;
+    }
+
+    verificaColisaoRaqueteJogador(raquete) {
+        if (this.x - this.raio < raquete.x + raquete.largura
+            && this.y - this.raio < raquete.y + raquete.altura
+            && this.y + this.raio > raquete.y) {
+                this.velocidadeX *= -1;
+            }
+    }
+}
