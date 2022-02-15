@@ -30,10 +30,12 @@ function moveRaqueteJogador(raquete) {
 }
 
 function moveRaqueteOponente(raquete) {
-    if (bolinha.y < raquete.y - 10)
+    let chanceDeErrar = Math.floor(Math.random() * raquete.altura/2);
+
+    if (bolinha.y < raquete.y - chanceDeErrar)
         raquete.moveParaCima();
     
-    if (bolinha.y > raquete.y + raquete.altura + 10)
+    if (bolinha.y > raquete.y + raquete.altura + chanceDeErrar)
         raquete.moveParaBaixo();
 }
 
