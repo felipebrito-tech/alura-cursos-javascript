@@ -1,12 +1,13 @@
 import { pincel } from './pincel.js';
 
 export class Bolinha {
-    constructor(x, y, raio, velocidadeX, velocidadeY) {
+    constructor(x, y, raio, velocidadeX, velocidadeY, somRaquetada) {
         this.x = x;
         this.y = y;
         this.raio = raio;
         this.velocidadeX = velocidadeX;
         this.velocidadeY = velocidadeY;
+        this.somRaquetada = somRaquetada;
         this.cor = 'white';
     }
 
@@ -38,6 +39,7 @@ export class Bolinha {
         if (this.x - this.raio < raquete.x + raquete.largura
             && this.y - this.raio < raquete.y + raquete.altura
             && this.y + this.raio > raquete.y) {
+                this.somRaquetada.play();
                 this.velocidadeX *= -1;
             }
     }
@@ -46,6 +48,7 @@ export class Bolinha {
         if (this.x + this.raio > raquete.x
             && this.y - this.raio < raquete.y + raquete.altura
             && this.y + this.raio > raquete.y) {
+                this.somRaquetada.play();
                 this.velocidadeX *= -1;
             }
     }

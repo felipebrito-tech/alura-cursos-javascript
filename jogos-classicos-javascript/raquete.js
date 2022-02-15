@@ -8,6 +8,7 @@ export class Raquete {
         this.altura = altura;
         this.velocidade = velocidade;
         this.alturaMesa = alturaMesa;
+        
     }
 
     desenha() {

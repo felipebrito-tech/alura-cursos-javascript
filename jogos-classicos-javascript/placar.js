@@ -1,11 +1,12 @@
 import { pincel } from './pincel.js';
 
 export class Placar {
-    constructor(pontosJogador, pontosOponente, alturaMesa, larguraMesa) {
+    constructor(pontosJogador, pontosOponente, alturaMesa, larguraMesa, somPonto) {
         this.pontosJogador = pontosJogador;
         this.pontosOponente = pontosOponente;
         this.alturaMesa = alturaMesa;
         this.larguraMesa = larguraMesa;
+        this.somPonto = somPonto;
     }
 
     desenha() {
@@ -24,7 +25,10 @@ export class Placar {
         
         if (oponenteMarcouPonto) this.pontosOponente++;
 
-        if (jogadorMarcouPonto || oponenteMarcouPonto) bolinha.resetarPosicao(this.larguraMesa/2, this.alturaMesa/2);
+        if (jogadorMarcouPonto || oponenteMarcouPonto) {
+            this.somPonto.play();
+            bolinha.resetarPosicao(this.larguraMesa/2, this.alturaMesa/2);
+        }
     }
 
     _desenhaPlacar(pontuacao, xPlacar, xTexto) {
