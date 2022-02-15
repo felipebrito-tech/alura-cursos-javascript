@@ -17,12 +17,13 @@ export class Bolinha {
         pincel.fill();
     }
 
-    move(mesa, raqueteJogador) {
+    move(mesa, raqueteJogador, raqueteOponente) {
         this.x += this.velocidadeX;
         this.y += this.velocidadeY;
 
         this.verificaColisaoBorda(mesa);
-        this.verificaColisaoRaqueteJogador(raqueteJogador)
+        this.verificaColisaoRaqueteJogador(raqueteJogador);
+        this.verificaColisaoRaqueteOponente(raqueteOponente);
     }
 
     verificaColisaoBorda(mesa) {
@@ -39,5 +40,18 @@ export class Bolinha {
             && this.y + this.raio > raquete.y) {
                 this.velocidadeX *= -1;
             }
+    }
+
+    verificaColisaoRaqueteOponente(raquete) {
+        if (this.x + this.raio > raquete.x
+            && this.y - this.raio < raquete.y + raquete.altura
+            && this.y + this.raio > raquete.y) {
+                this.velocidadeX *= -1;
+            }
+    }
+
+    resetarPosicao(xInicial, yInicial) {
+        this.x = xInicial;
+        this.y = yInicial;
     }
 }
