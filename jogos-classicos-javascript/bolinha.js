@@ -9,6 +9,11 @@ export class Bolinha {
         this.velocidadeY = velocidadeY;
         this.somRaquetada = somRaquetada;
         this.cor = 'white';
+
+        this.dadosIniciais = {
+            x: x,
+            y: y
+        };
     }
 
     desenha() {
@@ -53,8 +58,8 @@ export class Bolinha {
             }
     }
 
-    resetarPosicao(xInicial, yInicial) {
-        this.x = xInicial;
-        this.y = yInicial;
+    reseta() {
+        this.x = this.dadosIniciais.x;
+        this.y = this.dadosIniciais.y;
     }
 }
