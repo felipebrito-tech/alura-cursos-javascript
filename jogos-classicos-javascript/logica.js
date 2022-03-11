@@ -17,7 +17,7 @@ moveRaqueteJogador(raqueteJogador);
 
 const raqueteOponente = new Raquete(585, 150, 10, 90, 10, mesa.altura);
 
-const jogo = new Jogo(placar, bolinha, raqueteJogador, raqueteOponente);
+const jogo = new Jogo(mesa, placar, bolinha, raqueteJogador, raqueteOponente);
 document.onkeypress = evento => { if (evento.keyCode == 13) jogo.comeca(); }
 
 function moveRaqueteJogador(raquete) {
@@ -61,5 +61,11 @@ export function draw() {
     
         if (placar.alguemGanhou())
             jogo.termina();
+    }
+    else {
+        jogo.escreveNaTela("Tecle ENTER para nova partida!", "24px Comic Sans MS", 2);
+
+        if (placar.alguemGanhou())
+            jogo.escreveNaTela(placar.pegaTextoResultado(), "34px Impact", 4);
     }
 }

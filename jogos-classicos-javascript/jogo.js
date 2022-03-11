@@ -1,5 +1,8 @@
+import { pincel } from "./pincel.js";
+
 export class Jogo {
-    constructor(placar, bolinha, raqueteJogador, raqueteOponente){
+    constructor(mesa, placar, bolinha, raqueteJogador, raqueteOponente){
+        this.mesa = mesa;
         this.placar = placar;
         this.bolinha = bolinha;
         this.raqueteJogador = raqueteJogador;
@@ -20,4 +23,10 @@ export class Jogo {
     termina() {
         this.comecou = false;
     }
-}
+
+    escreveNaTela(texto, font, quadranteY) {
+        pincel.font = font;
+        pincel.fillStyle = "white";
+        pincel.textAlign = "center";
+        pincel.fillText(texto, this.mesa.largura/2, quadranteY*this.mesa.altura/8);
+    }}

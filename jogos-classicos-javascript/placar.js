@@ -42,6 +42,10 @@ export class Placar {
         return this.pontosJogador == this.pontosVitoria || this.pontosOponente == this.pontosVitoria;
     }
 
+    pegaTextoResultado() {
+        return (this.pontosJogador == this.pontosVitoria) ? "Você ganhou!" : "Você perdeu!";
+    }
+
     reseta() {
         this.pontosJogador = this.dadosIniciais.pontosJogador;
         this.pontosOponente = this.dadosIniciais.pontosOponente;
