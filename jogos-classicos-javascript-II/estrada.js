@@ -1,16 +1,12 @@
 import { pincel } from './pincel.js';
 
 export class Estrada {
-    constructor(largura, altura, cor){
-        this.largura = largura;
-        this.altura = altura;
-        this.cor = cor;
+    constructor(){
+        this.estradaImg = new Image();
+        this.estradaImg.src = "./assets/imagens/estrada.png";
     }
 
-    desenha() {
-        let estradaImg = new Image();
-        estradaImg.src = "./assets/imagens/estrada.png";
-        
-        estradaImg.onload = () => pincel.drawImage(estradaImg, 0, 0);
+    desenha() {    
+        pincel.drawImage(this.estradaImg, 0, 0);
     }
 }
