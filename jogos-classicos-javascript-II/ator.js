@@ -4,8 +4,15 @@ export class Ator {
     constructor(x, y){
         this.x = x;
         this.y = y;
+        this.comprimento = 34;
+        this.altura = 30;
 
-        this.atorImg = new Image(34, 30);
+        this.dadosIniciais = {
+            x: this.x,
+            y: this.y
+        };
+
+        this.atorImg = new Image(this.comprimento, this.altura);
         this.atorImg.src = "./assets/imagens/ator-1.png";
 
         this.configuraMovimento();
@@ -29,10 +36,16 @@ export class Ator {
     }
 
     moveParaCima() {
-        this.y -= 3;
+        if (this.y > 3)
+            this.y -= 3;
     }
     
     moveParaBaixo() {
-        this.y += 3;
+        if (this.y + this.altura < 394)
+            this.y += 3;
+    }
+
+    voltaProInicio() {
+        this.y = this.dadosIniciais.y;
     }
 }

@@ -5,12 +5,14 @@ export class Carro {
         this.x = x;
         this.y = y;
         this.velocidade = velocidade;
+        this.comprimento = 73;
+        this.altura = 40;
 
         this.dadosIniciais = {
             x: this.x
         };
 
-        this.carroImg = new Image(73, 40);
+        this.carroImg = new Image(this.comprimento, this.altura);
         this.carroImg.src = carroImgSrc;
     }
 
@@ -18,9 +20,24 @@ export class Carro {
         pincel.drawImage(this.carroImg, this.x, this.y);
     }
 
-    anda() {
+    anda(ator) {
         this.x -= this.velocidade;
 
-        if (this.x < -73) this.x = this.dadosIniciais.x;
+        this.verificaColisao(ator);
+
+        if (this._chegouNoFimDaEstrada()) this.x = this.dadosIniciais.x;
+    }
+
+    verificaColisao(ator) {
+        if (ator.x + ator.comprimento > this.x
+            && ator.x < this.x + this.comprimento
+            && ator.y < this.y + this.altura
+            && ator.y + ator.altura > this.y) {
+                ator.voltaProInicio();
+            }
+    }
+
+    _chegouNoFimDaEstrada() {
+        return this.x < -this.comprimento;
     }
 }
