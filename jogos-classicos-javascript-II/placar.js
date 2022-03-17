@@ -19,22 +19,14 @@ export class Placar {
         let marcouPonto = ator.y < 10;
 
         if (marcouPonto) {
-            this.pontos++;
             this.somPonto.play();
+            this.pontos++;
             ator.voltaProInicio();
         }
     }
 
-    alguemGanhou() {
-        return this.pontosJogador == this.pontosVitoria || this.pontosOponente == this.pontosVitoria;
-    }
-
-    pegaTextoResultado() {
-        return (this.pontosJogador == this.pontosVitoria) ? "Você ganhou!" : "Você perdeu!";
-    }
-
-    reseta() {
-        this.pontosJogador = this.dadosIniciais.pontosJogador;
-        this.pontosOponente = this.dadosIniciais.pontosOponente;
+    perdePonto() {
+        if (this.pontos > 0)
+            this.pontos--;
     }
 }

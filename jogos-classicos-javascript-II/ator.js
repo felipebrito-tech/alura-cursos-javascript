@@ -36,16 +36,19 @@ export class Ator {
     }
 
     moveParaCima() {
-        if (this.y > 3)
-            this.y -= 3;
+        this.y -= 3;
     }
     
     moveParaBaixo() {
-        if (this.y + this.altura < 394)
+        if (this._podeSeMover())
             this.y += 3;
     }
 
     voltaProInicio() {
         this.y = this.dadosIniciais.y;
+    }
+
+    _podeSeMover() {
+        return this.y + this.altura < 394;
     }
 }

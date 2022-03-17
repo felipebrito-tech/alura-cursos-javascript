@@ -29,4 +29,5 @@ export class Jogo {
         pincel.fillStyle = "white";
         pincel.textAlign = "center";
         pincel.fillText(texto, this.mesa.largura/2, quadranteY*this.mesa.altura/8);
-    }}
+    }
+}

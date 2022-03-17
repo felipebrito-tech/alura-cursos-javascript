@@ -1,8 +1,10 @@
 import { Ator } from './ator.js';
 import { Carro } from './carro.js';
 import { Estrada } from './estrada.js';
+import { pincel } from './pincel.js';
 import { Placar } from './placar.js';
 
+const trilha = new Audio('./assets/sons/trilha.mp3');
 
 const estrada = new Estrada();
 const placar = new Placar(140, 29);
@@ -16,15 +18,33 @@ const carros = [
     new Carro(600, 318, 2.3, "./assets/imagens/carro-3.png")
 ]
 
+let jogoJaComecou = false;
+document.onkeypress = evento => { if (evento.keyCode == 13) jogoJaComecou = true; }
+
+function escreveNaTela(texto) {
+    pincel.font = "28px Impact";
+    pincel.fillStyle = "white";
+    pincel.textAlign = "center";
+    pincel.fillText(texto, 400, 29);
+}
+
 export function draw() {
     estrada.desenha();
     placar.desenha();
-    ator.desenha();
-
-    carros.forEach(carro => {
-        carro.desenha();
-        carro.anda(ator);
-    });
-
-    placar.marcaPonto(ator);
+    
+    if (jogoJaComecou) {
+        ator.desenha();
+        trilha.play();
+        
+        carros.forEach(carro => {
+            carro.desenha();
+            carro.anda(ator, placar);
+        });
+        
+        placar.marcaPonto(ator);
+    }
+    else {
+        ator.voltaProInicio();
+        escreveNaTela("Tecle ENTER para nova partida!");
+    }
 }
